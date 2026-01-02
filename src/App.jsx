@@ -15,7 +15,7 @@ function App() {
   const type = formData.get('type')
   const message = formData.get('message')
 
-  const mailtoLink = `mailto:magika9644@yahoo.ne.jp?subject=...
+  const mailtoLink = `mailto:magika9644@yahoo.ne.jp?subject=...`
   
   window.location.href = mailtoLink
   
