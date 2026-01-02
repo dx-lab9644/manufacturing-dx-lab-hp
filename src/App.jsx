@@ -15,7 +15,7 @@ function App() {
   const type = formData.get('type')
   const message = formData.get('message')
 
-  const mailtoLink = `mailto:manufacturing.dx.lab@gmail.com?subject=【お問い合わせ】${type}&body=お名前: ${name}%0D%0Aメールアドレス: ${email}%0D%0Aお問い合わせ種類: ${type}%0D%0A%0D%0Aメッセージ:%0D%0A${encodeURIComponent(message)}`
+  const mailtoLink = `mailto:magika9644@yahoo.ne.jp?subject=...
   
   window.location.href = mailtoLink
   
@@ -323,10 +323,10 @@ function App() {
           <div className="mt-8 text-center">
             <p className="text-gray-400 text-sm mb-2">または直接メールでのお問い合わせも可能です</p>
             <a 
-              href="mailto:manufacturing.dx.lab@gmail.com"
-              className="text-red-400 hover:text-red-300 text-lg font-semibold transition"
+            href="mailto:magika9644@yahoo.ne.jp"
+            className="text-red-400 hover:text-red-300 text-lg font-semibold transition"
             >
-              manufacturing.dx.lab@gmail.com
+            magika9644@yahoo.ne.jp
             </a>
           </div>
         </div>
