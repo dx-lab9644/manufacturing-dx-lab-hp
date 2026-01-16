@@ -42,6 +42,7 @@ function App() {
             <button onClick={() => scrollToSection('about')} className="hover:text-red-500 transition">About</button>
             <button onClick={() => scrollToSection('products')} className="hover:text-red-500 transition">Products</button>
             <button onClick={() => scrollToSection('works')} className="hover:text-red-500 transition">Works</button>
+            <button onClick={() => scrollToSection('terms')} className="hover:text-red-500 transition">Terms</button>
             <button onClick={() => scrollToSection('contact')} className="hover:text-red-500 transition">Contact</button>
           </nav>
         </div>
@@ -107,12 +108,16 @@ function App() {
             <div className="bg-gray-800 p-8 rounded-lg border-t-4 border-red-500">
               <div className="flex justify-between items-start mb-4">
                 <h3 className="text-2xl font-bold text-red-400">基準在庫算出ツール</h3>
-                <span className="text-2xl font-bold text-white">¥3,980</span>
+                <span className="text-2xl font-bold text-white">¥6,980</span>
               </div>
               <p className="text-gray-300 mb-4 font-semibold">もう勘に頼らない！データで決める適正在庫</p>
               <p className="text-gray-400 mb-4 leading-relaxed">
                 過去の出荷実績から科学的に基準在庫を算出。エントロピー分析で需要の安定性を可視化し、過剰在庫と欠品リスクを同時に削減。このツールがあれば、「なんとなく」の発注から卒業できます。
               </p>
+              <div className="mb-4 flex items-center gap-2 text-green-400">
+                <span className="text-lg">✓</span>
+                <span className="text-sm font-semibold">マニュアル完備・サポートなし（買い切り型）</span>
+              </div>
               <div className="mb-4">
                 <p className="text-sm text-gray-500 mb-2">こんな人におすすめ：</p>
                 <ul className="text-sm text-gray-400 space-y-1">
@@ -139,6 +144,10 @@ function App() {
               <p className="text-gray-400 mb-4 leading-relaxed">
                 受注データを入力するだけで、MRP展開から製造指図まで自動生成。基準在庫算出機能も搭載し、迅速な意思決定を強力にサポート。毎朝の計画業務が10分で終わります。
               </p>
+              <div className="mb-4 flex items-center gap-2 text-green-400">
+                <span className="text-lg">✓</span>
+                <span className="text-sm font-semibold">マニュアル完備・サポートなし（買い切り型）</span>
+              </div>
               <div className="mb-4">
                 <p className="text-sm text-gray-500 mb-2">こんな人におすすめ：</p>
                 <ul className="text-sm text-gray-400 space-y-1">
@@ -165,6 +174,10 @@ function App() {
               <p className="text-gray-400 mb-4 leading-relaxed">
                 カメラでバーコードを読み取るだけで入出庫管理が完結。Googleスプレッドシートと連携し、リアルタイムで在庫数を把握。専用機器不要、スマホ・タブレットで今日から使えます。
               </p>
+              <div className="mb-4 flex items-center gap-2 text-yellow-400">
+                <span className="text-lg">⚠</span>
+                <span className="text-sm font-semibold">マニュアル完備・導入カスタマイズ別途（見積もり）</span>
+              </div>
               <div className="mb-4">
                 <p className="text-sm text-gray-500 mb-2">こんな人におすすめ：</p>
                 <ul className="text-sm text-gray-400 space-y-1">
@@ -208,6 +221,19 @@ function App() {
               </button>
             </div>
           </div>
+          <div className="mt-8 text-center">
+            <p className="text-gray-400 text-sm">※価格は予告なく変更される場合があります</p>
+            <p className="text-gray-400 text-sm mt-2">
+              製品購入前に必ず
+              <button 
+                onClick={() => scrollToSection('terms')}
+                className="text-red-400 hover:text-red-300 underline mx-1"
+              >
+                利用規約
+              </button>
+              をご確認ください
+            </p>
+          </div>
         </div>
       </section>
 
@@ -239,6 +265,127 @@ function App() {
                 現場の声を反映したシンプルで使いやすいERPシステム。
                 2026年リリース予定。
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 利用規約セクション */}
+      <section id="terms" className="py-20 px-4 bg-gray-900">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center">利用規約</h2>
+          
+          <div className="bg-gray-800 p-8 rounded-lg space-y-6 text-gray-300">
+            <div>
+              <h3 className="text-xl font-bold mb-3 text-red-400">第1条（適用範囲）</h3>
+              <p className="leading-relaxed">
+                本規約は、Manufacturing DX Lab（以下「当方」）が提供する製品・サービスの利用に関する条件を定めるものです。
+                本規約に同意の上、製品をご購入ください。
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-bold mb-3 text-red-400">第2条（製品の性質）</h3>
+              <p className="leading-relaxed mb-2">
+                当方が提供する製品は、デジタルコンテンツ（VBAツール、スクリプト、マニュアル等）です。
+                以下の点をご理解の上ご購入ください。
+              </p>
+              <ul className="list-disc list-inside space-y-1 ml-4">
+                <li>買い切り型の製品です（サブスクリプションではありません）</li>
+                <li>マニュアルは完備していますが、個別サポートは提供しておりません</li>
+                <li>製品は「現状のまま」提供され、動作保証はありません</li>
+                <li>お客様の環境での動作を保証するものではありません</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-bold mb-3 text-red-400">第3条（返金・返品ポリシー）</h3>
+              <p className="leading-relaxed mb-2">
+                デジタルコンテンツという性質上、以下の通り返金・返品は一切お受けできません。
+              </p>
+              <ul className="list-disc list-inside space-y-1 ml-4">
+                <li>購入後の返金・返品は理由を問わず対応できません</li>
+                <li>「動作しなかった」「思っていたものと違った」等の理由でも返金はできません</li>
+                <li>マニュアルをよくお読みになり、ご自身で動作させる必要があります</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-bold mb-3 text-red-400">第4条（サポート範囲）</h3>
+              <p className="leading-relaxed mb-2">
+                買い切り型製品のため、以下の通りサポートは限定的です。
+              </p>
+              <ul className="list-disc list-inside space-y-1 ml-4">
+                <li>マニュアルは完備しており、基本的な使い方は記載されています</li>
+                <li>個別の質問対応、カスタマイズ相談は別途有償となります</li>
+                <li>製品のアップデートや機能追加は保証されません</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-bold mb-3 text-red-400">第5条（決済方法）</h3>
+              <p className="leading-relaxed mb-2">
+                現在、以下の決済方法に対応しています。
+              </p>
+              <ul className="list-disc list-inside space-y-1 ml-4">
+                <li>銀行振込のみ</li>
+                <li>振込手数料はお客様負担となります</li>
+                <li>入金確認後、製品とマニュアルをメールで送付いたします</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-bold mb-3 text-red-400">第6条（免責事項）</h3>
+              <p className="leading-relaxed mb-2">
+                当方は、以下の事項について一切の責任を負いません。
+              </p>
+              <ul className="list-disc list-inside space-y-1 ml-4">
+                <li>製品の使用により生じたいかなる損害</li>
+                <li>お客様の環境での動作不良</li>
+                <li>データの消失や破損</li>
+                <li>業務への影響や機会損失</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-bold mb-3 text-red-400">第7条（禁止事項）</h3>
+              <p className="leading-relaxed mb-2">
+                購入者は以下の行為を行ってはなりません。
+              </p>
+              <ul className="list-disc list-inside space-y-1 ml-4">
+                <li>製品の再配布、転売</li>
+                <li>マニュアルの無断転載、複製</li>
+                <li>逆コンパイル、リバースエンジニアリング</li>
+                <li>その他、当方の権利を侵害する行為</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-bold mb-3 text-red-400">第8条（価格改定）</h3>
+              <p className="leading-relaxed">
+                製品の価格は予告なく変更される場合があります。
+                既にご購入いただいたお客様への価格変更の遡及適用はありません。
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-bold mb-3 text-red-400">第9条（規約の変更）</h3>
+              <p className="leading-relaxed">
+                当方は、必要に応じて本規約を変更できるものとします。
+                変更後の規約は、本ウェブサイトに掲載した時点で効力を生じます。
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-bold mb-3 text-red-400">第10条（準拠法・管轄裁判所）</h3>
+              <p className="leading-relaxed">
+                本規約は日本法に準拠し、本規約に関する紛争については、香川県高松市を管轄する裁判所を専属的合意管轄裁判所とします。
+              </p>
+            </div>
+
+            <div className="pt-4 border-t border-gray-700">
+              <p className="text-sm text-gray-400">制定日：2025年1月16日</p>
+              <p className="text-sm text-gray-400">Manufacturing DX Lab</p>
             </div>
           </div>
         </div>
@@ -326,7 +473,7 @@ function App() {
             href="mailto:magika9644@yahoo.ne.jp"
             className="text-red-400 hover:text-red-300 text-lg font-semibold transition"
             >
-            magika9644@yahoo.ne.jp
+            こちら
             </a>
           </div>
         </div>
