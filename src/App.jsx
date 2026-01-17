@@ -1,8 +1,16 @@
 import logo from './assets/logo.png'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import ReactGA from 'react-ga4'
 
 function App() {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
+  
+  // Google Analytics初期化
+  useEffect(() => {
+    ReactGA.initialize('G-TXTC2Z0MGM')
+    ReactGA.send('pageview')
+  }, [])
+  
   const scrollToSection = (id) => {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' })
   }
