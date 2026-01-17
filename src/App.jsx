@@ -7,7 +7,7 @@ function App() {
   
   // Google Analytics初期化
   useEffect(() => {
-    ReactGA.initialize('G-TXTC2Z0MGM')
+    ReactGA.initialize('G-TXTC22GMSN')
     ReactGA.send('pageview')
   }, [])
   
