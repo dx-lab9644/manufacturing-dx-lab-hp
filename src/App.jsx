@@ -164,34 +164,53 @@ function App() {
               </button>
             </div>
 
-            {/* GASバーコードPOSシステム */}
-            <div className="bg-gray-800 p-8 rounded-lg border-t-4 border-red-500">
+            {/* バーコード在庫管理システム(無料版) */}
+            <div className="bg-gray-800 p-8 rounded-lg border-t-4 border-green-500">
               <div className="flex justify-between items-start mb-4">
-                <h3 className="text-2xl font-bold text-red-400">GASバーコードPOSシステム</h3>
-                <span className="text-2xl font-bold text-white">¥9,800</span>
+                <h3 className="text-2xl font-bold text-green-400">バーコード在庫管理システム</h3>
+                <span className="text-2xl font-bold text-green-400">無料</span>
               </div>
-              <p className="text-gray-300 mb-4 font-semibold">スマホがPOSレジに！在庫管理もリアルタイム</p>
+              <p className="text-gray-300 mb-4 font-semibold">スマホで簡単、入出庫を即記録</p>
               <p className="text-gray-400 mb-4 leading-relaxed">
-                カメラでバーコードを読み取るだけで入出庫管理が完結。Googleスプレッドシートと連携し、リアルタイムで在庫数を把握。専用機器不要、スマホ・タブレットで今日から使えます。
+                カメラでバーコードを読み取るだけで入出庫管理が完結。Googleスプレッドシートと連携し、リアルタイムで在庫数を把握。新商品は初回スキャン時に自動で在庫表に追加。専用機器不要、スマホ・タブレットで今日から使えます。
               </p>
-              <div className="mb-4 flex items-center gap-2 text-yellow-400">
-                <span className="text-lg">⚠</span>
-                <span className="text-sm font-semibold">マニュアル完備・導入カスタマイズ別途（見積もり）</span>
+              <div className="mb-4 flex items-center gap-2 text-green-400">
+                <span className="text-lg">✓</span>
+                <span className="text-sm font-semibold">オープンソース・無料配布</span>
               </div>
               <div className="mb-4">
                 <p className="text-sm text-gray-500 mb-2">こんな人におすすめ：</p>
                 <ul className="text-sm text-gray-400 space-y-1">
-                  <li>• 在庫の入出庫をアナログ管理している</li>
-                  <li>• POSレジは高すぎて導入できない</li>
+                  <li>• 在庫管理システムは高額で導入できない</li>
                   <li>• 複数拠点でリアルタイムに在庫を共有したい</li>
+                  <li>• 未契約スマホや古い端末を有効活用したい</li>
+                  <li>• 倉庫の奥など通信環境が悪い場所でも作業したい</li>
                 </ul>
               </div>
-              <button 
-                onClick={() => scrollToSection('contact')}
-                className="w-full bg-red-600 hover:bg-red-700 py-3 rounded-lg font-semibold transition"
-              >
-                購入相談
-              </button>
+              <div className="space-y-3">
+                <a 
+                  href="https://docs.google.com/spreadsheets/d/1V8bfKntopn85tRWzL0hZpVd-jDZ6tCPPF3TzcMBUVi0/copy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full bg-green-600 hover:bg-green-700 py-3 rounded-lg font-semibold transition text-center"
+                >
+                  無料ダウンロード
+                </a>
+                <a 
+                  href="https://docs.google.com/document/d/1hVaVduehDS-tS2zf-ilVf3N-ONcb1TQ7W0SAHFUpWIE/edit?tab=t.0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full border border-green-600 hover:bg-green-600 py-3 rounded-lg font-semibold transition text-center"
+                >
+                  セットアップマニュアル
+                </a>
+                <button 
+                  onClick={() => scrollToSection('contact')}
+                  className="w-full border border-gray-600 hover:bg-gray-700 py-3 rounded-lg font-semibold transition"
+                >
+                  カスタマイズ・導入サポート相談
+                </button>
+              </div>
             </div>
 
             {/* カスタマイズ対応 */}
