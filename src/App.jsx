@@ -63,24 +63,35 @@ function App() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50" />
         </div>
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-          <div className="inline-block bg-red-600 text-white px-6 py-3 rounded-full text-lg font-bold mb-6">
-            βテスター募集中（3社限定）
+          <div className="inline-block bg-yellow-500 text-gray-900 px-8 py-3 rounded-full text-lg font-bold mb-6">
+            開発中・βテスター募集中
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            製造業の管理を<br />シンプルに。
+          <h1 className="text-5xl md:text-7xl font-bold mb-4 leading-tight">
+            ALISA
           </h1>
+          <p className="text-2xl md:text-3xl mb-6 text-yellow-400 font-semibold">
+            スマートERP
+          </p>
           <p className="text-xl md:text-2xl mb-4 text-gray-200">
             小規模製造業のための統合管理システム
           </p>
-          <p className="text-lg md:text-xl mb-12 text-gray-300">
-            2026年7月 製品版リリース予定
+          <p className="text-lg md:text-xl mb-8 text-gray-300">
+            製造業の管理をシンプルに。
           </p>
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 mb-8 inline-block">
+            <p className="text-white text-lg mb-2">
+              <span className="font-bold text-yellow-400">βテスト期間：</span>2026年4月～6月
+            </p>
+            <p className="text-white text-lg">
+              <span className="font-bold text-yellow-400">製品版リリース：</span>2026年7月予定
+            </p>
+          </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => scrollToSection('beta')}
-              className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all transform hover:scale-105"
+              className="bg-red-600 hover:bg-red-700 text-white px-10 py-4 rounded-lg text-lg font-bold transition-all transform hover:scale-105"
             >
-              βテスターに応募
+              βテスターに応募する（3社限定）
             </button>
             <button
               onClick={() => scrollToSection('features')}
@@ -92,12 +103,94 @@ function App() {
         </div>
       </section>
 
+      {/* ALISAについてセクション */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-gray-800 mb-4">ALISAとは</h2>
+              <p className="text-xl text-gray-600">
+                製造現場の経験から生まれた、本当に使えるスマートERP
+              </p>
+            </div>
+
+            {/* 頭文字の意味 */}
+            <div className="grid md:grid-cols-5 gap-6 mb-16">
+              <div className="text-center p-6 bg-gradient-to-br from-red-50 to-orange-50 rounded-xl">
+                <div className="text-4xl font-bold text-red-600 mb-3">A</div>
+                <div className="font-bold text-gray-800 mb-2">Automated</div>
+                <div className="text-sm text-gray-600">自動化された</div>
+              </div>
+              <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl">
+                <div className="text-4xl font-bold text-blue-600 mb-3">L</div>
+                <div className="font-bold text-gray-800 mb-2">Lean</div>
+                <div className="text-sm text-gray-600">リーン</div>
+              </div>
+              <div className="text-center p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl">
+                <div className="text-4xl font-bold text-green-600 mb-3">I</div>
+                <div className="font-bold text-gray-800 mb-2">Integrated</div>
+                <div className="text-sm text-gray-600">統合</div>
+              </div>
+              <div className="text-center p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl">
+                <div className="text-4xl font-bold text-purple-600 mb-3">S</div>
+                <div className="font-bold text-gray-800 mb-2">Smart</div>
+                <div className="text-sm text-gray-600">スマート</div>
+              </div>
+              <div className="text-center p-6 bg-gradient-to-br from-yellow-50 to-amber-50 rounded-xl">
+                <div className="text-4xl font-bold text-yellow-600 mb-3">A</div>
+                <div className="font-bold text-gray-800 mb-2">Application</div>
+                <div className="text-sm text-gray-600">アプリケーション</div>
+              </div>
+            </div>
+
+            {/* コンセプト */}
+            <div className="bg-gray-50 rounded-2xl p-10">
+              <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+                なぜALISAを開発したのか
+              </h3>
+              <div className="space-y-6 text-gray-700 leading-relaxed">
+                <p>
+                  16年間、製造現場で生産管理・在庫管理・生産技術に携わる中で、多くの中小製造業が抱える課題を目の当たりにしてきました。
+                </p>
+                <p>
+                  高額なERPシステムは機能が豊富すぎて使いこなせない。かといって、Excelでの管理では限界がある。そんな「ちょうどいいシステム」が存在しませんでした。
+                </p>
+                <p>
+                  ALISAは、製造現場で本当に必要な機能だけを厳選し、誰でも使いこなせるシンプルさを追求したスマートERPです。自動化・リーン・統合・スマートの4つの要素で、製造業の管理をもっと効率的に、もっとシンプルにします。
+                </p>
+              </div>
+
+              <div className="mt-8 grid md:grid-cols-3 gap-6">
+                <div className="bg-white rounded-xl p-6">
+                  <div className="text-red-600 font-bold mb-2">自動化で効率化</div>
+                  <div className="text-sm text-gray-600">
+                    MRPによる資材所要量の自動計算、在庫の自動引当で作業時間を大幅削減
+                  </div>
+                </div>
+                <div className="bg-white rounded-xl p-6">
+                  <div className="text-blue-600 font-bold mb-2">無駄を排除</div>
+                  <div className="text-sm text-gray-600">
+                    本当に必要な機能だけを搭載。複雑な操作は不要、誰でも使える設計
+                  </div>
+                </div>
+                <div className="bg-white rounded-xl p-6">
+                  <div className="text-green-600 font-bold mb-2">すべてを一元管理</div>
+                  <div className="text-sm text-gray-600">
+                    生産計画・在庫・製番を統合管理。情報の分散を防ぎ、リアルタイムな状況把握を実現
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 料金セクション */}
       <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">料金</h2>
-            <p className="text-xl text-gray-600">シンプルで分かりやすい料金体系</p>
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">料金プラン（予定）</h2>
+            <p className="text-xl text-gray-600">製品版リリース後の料金体系</p>
           </div>
 
           <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg p-12">
@@ -105,7 +198,8 @@ function App() {
               <div className="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
                 全機能込み
               </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-8">Manufacturing DX Lab</h3>
+              <h3 className="text-2xl font-bold text-gray-800 mb-2">ALISA（スマートERP）</h3>
+              <p className="text-gray-600">製品版リリース後の料金（予定）</p>
             </div>
 
             <div className="space-y-6 mb-12">
@@ -181,14 +275,19 @@ function App() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-            {/* Manufacturing DX Lab */}
+            {/* ALISA */}
             <div className="bg-gray-50 rounded-2xl p-8 hover:shadow-xl transition-shadow">
               <div className="bg-red-600 text-white w-16 h-16 rounded-xl flex items-center justify-center mb-6">
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">Manufacturing DX Lab</h3>
+              <div className="mb-4">
+                <h3 className="text-2xl font-bold text-gray-800 mb-2">ALISA（スマートERP）</h3>
+                <div className="inline-block bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-bold">
+                  開発中・2026年7月リリース予定
+                </div>
+              </div>
               <p className="text-gray-600 mb-6">
                 小規模製造業のための統合管理システム。生産計画、在庫管理、製番管理を一元化。
               </p>
@@ -212,14 +311,15 @@ function App() {
                   <span>カスタマイズ可能</span>
                 </div>
               </div>
-              <div className="text-2xl font-bold text-gray-800 mb-6">
+              <div className="text-2xl font-bold text-gray-800 mb-2">
                 月額 30,000円
               </div>
+              <p className="text-sm text-gray-600 mb-6">※製品版リリース後の料金</p>
               <button
-                onClick={() => scrollToSection('contact')}
+                onClick={() => scrollToSection('beta')}
                 className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-semibold transition-colors"
               >
-                詳しく見る
+                βテスターに応募する
               </button>
             </div>
 
@@ -333,7 +433,7 @@ function App() {
               <div className="inline-block bg-red-600 text-white px-6 py-2 rounded-full text-sm font-bold mb-4">
                 限定3社募集
               </div>
-              <h2 className="text-4xl font-bold text-gray-800 mb-4">βテスター募集</h2>
+              <h2 className="text-4xl font-bold text-gray-800 mb-4">ALISA（スマートERP）βテスター募集</h2>
               <p className="text-xl text-gray-600">
                 製品開発にご協力いただける企業様を募集しています
               </p>
