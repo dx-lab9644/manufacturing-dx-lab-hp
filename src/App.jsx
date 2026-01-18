@@ -6,491 +6,530 @@ import { useState, useEffect } from 'react'
 import ReactGA from 'react-ga4'
 
 function App() {
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false)
-  
-  // Google Analytics初期化
+  const [showScrollTop, setShowScrollTop] = useState(false)
+
   useEffect(() => {
-    ReactGA.initialize('G-TXTC22GMSN')
-    ReactGA.send('pageview')
+    ReactGA.initialize('G-0KS7SZLNYD')
+    ReactGA.send({ hitType: 'pageview', page: window.location.pathname })
+
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-  
-  const scrollToSection = (id) => {
-    document.getElementById(id).scrollIntoView({ behavior: 'smooth' })
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
- const handleSubmit = (e) => {
-  e.preventDefault()
-  const formData = new FormData(e.target)
-  const name = formData.get('name')
-  const email = formData.get('email')
-  const type = formData.get('type')
-  const message = formData.get('message')
-
-  const mailtoLink = `mailto:magika9644@yahoo.ne.jp?subject=お問い合わせ：${type}&body=お名前：${name}%0Aメールアドレス：${email}%0A%0Aお問い合わせ内容：%0A${message}`
-  
-  window.location.href = mailtoLink
-  
-  setShowSuccessMessage(true)
-  e.target.reset()
-  
-  setTimeout(() => {
-    setShowSuccessMessage(false)
-  }, 5000)
-}
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id)
+    if (element) {
+      const offset = 80
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY
+      window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' })
+    }
+  }
 
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div className="min-h-screen bg-white">
       {/* ヘッダー */}
-      <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b border-gray-200">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-3">
-            <img src={logo} alt="MDL Logo" className="h-24 w-24" />
-            <span className="font-bold text-lg text-gray-900">Manufacturing DX Lab</span>
+      <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <nav className="container mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <img src={logo} alt="MDL Logo" className="h-12" />
+              <span className="text-xl font-bold text-gray-800">Manufacturing DX Lab</span>
+            </div>
+            <div className="hidden md:flex items-center gap-8">
+              <button onClick={() => scrollToSection('products')} className="text-gray-700 hover:text-red-600 transition-colors">製品</button>
+              <button onClick={() => scrollToSection('features')} className="text-gray-700 hover:text-red-600 transition-colors">機能</button>
+              <button onClick={() => scrollToSection('beta')} className="text-gray-700 hover:text-red-600 transition-colors">βテスター</button>
+              <button onClick={() => scrollToSection('contact')} className="text-gray-700 hover:text-red-600 transition-colors">お問い合わせ</button>
+            </div>
+            <a
+              href="tel:09040708622"
+              className="hidden md:flex items-center gap-2 bg-blue-600 text-white px-6 py-2.5 rounded-full hover:bg-blue-700 transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              090-4070-8622
+            </a>
           </div>
-          <nav className="flex gap-6 text-sm">
-            <button onClick={() => scrollToSection('products')} className="hover:text-red-600 transition">製品</button>
-            <button onClick={() => scrollToSection('features')} className="hover:text-red-600 transition">機能</button>
-            <button onClick={() => scrollToSection('beta')} className="hover:text-red-600 transition">βテスター</button>
-            <button onClick={() => scrollToSection('contact')} className="hover:text-red-600 transition">お問い合わせ</button>
-          </nav>
-        </div>
+        </nav>
       </header>
 
       {/* ヒーローセクション */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div 
+      <section className="relative h-screen flex items-center justify-center text-white overflow-hidden">
+        <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${planningImg})`,
+            backgroundImage: 'url(https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?q=80&w=2000)',
           }}
-        />
-        <div className="relative z-10 text-center text-white px-4 max-w-4xl">
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50" />
+        </div>
+        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            製造業務を、<br />シンプルに。
+            製造業の管理を<br />シンプルに。
           </h1>
-          <p className="text-xl md:text-2xl mb-8 text-gray-200">
+          <p className="text-xl md:text-2xl mb-12 text-gray-200">
             小規模製造業のための統合管理システム
           </p>
-          
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 mb-8 max-w-md mx-auto border border-white/20">
-            <div className="text-lg mb-4 text-gray-200">料金</div>
-            <div className="space-y-3">
-              <div className="flex justify-between items-center">
-                <span className="text-gray-200">初期費用</span>
-                <span className="text-3xl font-bold">150,000円～</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-gray-200">月額料金</span>
-                <span className="text-3xl font-bold">30,000円</span>
-              </div>
-              <div className="text-sm text-gray-300 text-center pt-3 border-t border-white/20">
-                全機能・ユーザー無制限
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-red-600/90 backdrop-blur-md rounded-xl p-6 mb-8 max-w-md mx-auto border border-red-500">
-            <p className="text-xl font-bold mb-2">βテスター募集中</p>
-            <p className="text-gray-100">2025年7月一般販売開始予定</p>
-          </div>
-
-          <div className="flex gap-4 justify-center">
-            <button 
-              onClick={() => scrollToSection('beta')}
-              className="bg-red-600 hover:bg-red-700 px-10 py-4 rounded-lg font-semibold text-lg transition shadow-lg"
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              onClick={() => scrollToSection('contact')}
+              className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all transform hover:scale-105"
             >
-              βテスター応募
+              無料相談を申し込む
             </button>
-            <button 
+            <button
               onClick={() => scrollToSection('features')}
-              className="bg-white/20 backdrop-blur-md hover:bg-white/30 px-10 py-4 rounded-lg font-semibold text-lg transition border border-white/40"
+              className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all border border-white/30"
             >
-              詳しく見る
+              機能を見る
             </button>
           </div>
         </div>
       </section>
 
-      {/* 販売中の製品 */}
-      <section id="products" className="py-20 px-4 bg-gray-50">
-        <div className="max-w-6xl mx-auto">
+      {/* 料金セクション */}
+      <section className="py-24 bg-gray-50">
+        <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">今すぐ使えるツール</h2>
-            <p className="text-xl text-gray-600">現場の課題を解決する実践的ソリューション</p>
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">料金</h2>
+            <p className="text-xl text-gray-600">シンプルで分かりやすい料金体系</p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition">
-              <div className="text-center mb-6">
-                <div className="text-5xl font-bold text-red-600 mb-2">¥6,980</div>
-                <h3 className="text-xl font-bold text-gray-900">基準在庫算出ツール</h3>
+
+          <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg p-12">
+            <div className="text-center mb-12">
+              <div className="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                全機能込み
               </div>
-              <p className="text-gray-600 mb-6 text-center">
-                データで決める適正在庫。科学的アプローチで過剰在庫と欠品を防ぐ。
-              </p>
-              <button 
-                onClick={() => scrollToSection('contact')}
-                className="w-full bg-gray-900 hover:bg-gray-800 text-white py-3 rounded-lg font-semibold transition"
-              >
-                購入相談
-              </button>
+              <h3 className="text-2xl font-bold text-gray-800 mb-8">Manufacturing DX Lab</h3>
             </div>
 
-            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition">
-              <div className="text-center mb-6">
-                <div className="text-5xl font-bold text-red-600 mb-2">¥19,800</div>
-                <h3 className="text-xl font-bold text-gray-900">生産計画自動化</h3>
-              </div>
-              <p className="text-gray-600 mb-6 text-center">
-                MRP展開から製造指図まで自動生成。計画業務を劇的に効率化。
-              </p>
-              <button 
-                onClick={() => scrollToSection('contact')}
-                className="w-full bg-gray-900 hover:bg-gray-800 text-white py-3 rounded-lg font-semibold transition"
-              >
-                購入相談
-              </button>
-            </div>
-
-            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition border-2 border-green-500">
-              <div className="text-center mb-6">
-                <div className="text-5xl font-bold text-green-600 mb-2">無料</div>
-                <h3 className="text-xl font-bold text-gray-900">バーコード在庫管理</h3>
-              </div>
-              <p className="text-gray-600 mb-6 text-center">
-                スマホで簡単、入出庫を即記録。専用機器不要で今日から使える。
-              </p>
-              <a 
-                href="https://note.com/magika9644/n/nf5e3e8c8c8c8"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold transition text-center"
-              >
-                無料ダウンロード
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ERPの特徴 - Othello風 */}
-      <section id="features" className="py-20 px-4 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Manufacturing DX Lab ERPの特徴</h2>
-            <p className="text-xl text-gray-600">製造業務を一元管理する包括的なシステム</p>
-          </div>
-
-          {/* 特徴1: MRP展開 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
-            <div>
-              <img 
-                src={generationImg} 
-                alt="BOM管理" 
-                className="rounded-2xl shadow-2xl w-full"
-              />
-            </div>
-            <div>
-              <h3 className="text-3xl font-bold mb-6 text-gray-900">自動MRP展開</h3>
-              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                受注と生産計画を登録するだけで、必要な製造・購買オーダーを自動生成。
-                在庫を自動で割り当て、ロット設定も自動考慮。
-                今まで手作業で行っていた煩雑な計算作業が大幅に削減されます。
-              </p>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-start gap-3">
-                  <span className="text-red-600 font-bold text-xl">✓</span>
-                  <span>BOM展開による所要量自動計算</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-red-600 font-bold text-xl">✓</span>
-                  <span>在庫の自動割当・引当</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-red-600 font-bold text-xl">✓</span>
-                  <span>最小ロット・刻みロットの自動考慮</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* 特徴2: 在庫管理 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
-            <div className="md:order-2">
-              <img 
-                src={warehouseImg} 
-                alt="在庫管理" 
-                className="rounded-2xl shadow-2xl w-full"
-              />
-            </div>
-            <div className="md:order-1">
-              <h3 className="text-3xl font-bold mb-6 text-gray-900">複数拠点在庫管理</h3>
-              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                複数の倉庫・拠点の在庫を一元管理。
-                移送指示から入出庫実績まで、リアルタイムで正確に把握できます。
-                在庫の所在が明確になり、探す時間が削減されます。
-              </p>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-start gap-3">
-                  <span className="text-red-600 font-bold text-xl">✓</span>
-                  <span>複数拠点の在庫を統合管理</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-red-600 font-bold text-xl">✓</span>
-                  <span>拠点間移送の自動指示</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-red-600 font-bold text-xl">✓</span>
-                  <span>入出庫実績のリアルタイム反映</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* 特徴3: Excel脱却 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-              <img 
-                src={planningImg} 
-                alt="Excel脱却" 
-                className="rounded-2xl shadow-2xl w-full"
-              />
-            </div>
-            <div>
-              <h3 className="text-3xl font-bold mb-6 text-gray-900">Excel管理からの脱却</h3>
-              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                Excelでの在庫管理、生産計画、原価計算...
-                ファイルが増えすぎて、どれが最新かわからない。
-                そんな悩みを解決します。
-              </p>
-              <div className="bg-gray-50 p-6 rounded-xl">
-                <div className="mb-4">
-                  <div className="font-bold text-gray-900 mb-2">従来のExcel管理</div>
-                  <ul className="space-y-2 text-gray-600 text-sm">
-                    <li>✗ ファイルが分散・バージョン管理困難</li>
-                    <li>✗ 計算ミス・入力ミスのリスク</li>
-                    <li>✗ 属人化・引き継ぎ困難</li>
-                  </ul>
+            <div className="space-y-6 mb-12">
+              <div className="flex items-baseline justify-between border-b pb-4">
+                <span className="text-gray-700 font-medium">初期費用</span>
+                <div className="text-right">
+                  <span className="text-4xl font-bold text-gray-800">150,000</span>
+                  <span className="text-gray-600 ml-2">円〜</span>
                 </div>
-                <div className="pt-4 border-t border-gray-200">
-                  <div className="font-bold text-gray-900 mb-2">Manufacturing DX Lab ERP</div>
-                  <ul className="space-y-2 text-gray-600 text-sm">
-                    <li>✓ データ一元管理・常に最新</li>
-                    <li>✓ 自動計算でミス削減</li>
-                    <li>✓ 誰でも使える標準化</li>
-                  </ul>
+              </div>
+              <div className="flex items-baseline justify-between">
+                <span className="text-gray-700 font-medium">月額料金</span>
+                <div className="text-right">
+                  <span className="text-4xl font-bold text-gray-800">30,000</span>
+                  <span className="text-gray-600 ml-2">円</span>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* その他の機能 */}
-      <section className="py-20 px-4 bg-gray-50">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">その他の主要機能</h2>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-xl shadow-md">
-              <h3 className="text-xl font-bold mb-4 text-gray-900">受注管理</h3>
-              <p className="text-gray-600">
-                受注データを登録し、製番を発行。納期や数量を一元管理します。
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-xl shadow-md">
-              <h3 className="text-xl font-bold mb-4 text-gray-900">BOM管理</h3>
-              <p className="text-gray-600">
-                部品構成を管理し、製品がどの部品で構成されているかを明確に。階層構造に対応。
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-xl shadow-md">
-              <h3 className="text-xl font-bold mb-4 text-gray-900">製造指示</h3>
-              <p className="text-gray-600">
-                製造オーダーの管理、進捗状況の把握。生産現場への指示を効率化。
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-xl shadow-md">
-              <h3 className="text-xl font-bold mb-4 text-gray-900">出荷管理</h3>
-              <p className="text-gray-600">
-                出荷指示から実績管理まで。納期遵守をサポート。
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-xl shadow-md">
-              <h3 className="text-xl font-bold mb-4 text-gray-900">購買管理</h3>
-              <p className="text-gray-600">
-                発注から入荷まで一元管理。発注漏れを防ぎ、適正な在庫を維持。
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-xl shadow-md">
-              <h3 className="text-xl font-bold mb-4 text-gray-900">進捗管理</h3>
-              <p className="text-gray-600">
-                製造オーダーの進捗をリアルタイムで確認。遅延を早期発見。
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* βテスター募集 */}
-      <section id="beta" className="py-20 px-4 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">βテスター募集</h2>
-            <p className="text-xl text-gray-600">2025年3月開始予定</p>
-          </div>
-          
-          <div className="bg-gray-50 p-10 rounded-2xl shadow-lg">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-              <div>
-                <h3 className="font-bold text-lg mb-3 text-gray-900">募集期間</h3>
-                <p className="text-gray-700">2025年3月開始予定</p>
-              </div>
-              <div>
-                <h3 className="font-bold text-lg mb-3 text-gray-900">βテスト期間</h3>
-                <p className="text-gray-700">2025年4月～6月（3ヶ月間）</p>
-              </div>
-              <div>
-                <h3 className="font-bold text-lg mb-3 text-gray-900">参加費用</h3>
-                <p className="text-gray-700">無料</p>
-              </div>
-              <div>
-                <h3 className="font-bold text-lg mb-3 text-gray-900">参加条件</h3>
-                <ul className="text-gray-700 space-y-1 text-sm">
-                  <li>• 小規模製造業（従業員50名以下目安）</li>
-                  <li>• フィードバックにご協力いただける方</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="bg-white p-8 rounded-xl mb-8">
-              <h3 className="font-bold text-lg mb-4 text-gray-900">βテスター特典</h3>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-start gap-3">
-                  <span className="text-red-600 font-bold text-xl">✓</span>
-                  <span>βテスト期間中は無料で利用可能</span>
+            <div className="bg-blue-50 rounded-xl p-6 mb-8">
+              <h4 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
+                <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                含まれる機能
+              </h4>
+              <ul className="space-y-2 text-gray-700">
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 mt-1">•</span>
+                  <span>生産計画・MRP（資材所要量計画）</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-red-600 font-bold text-xl">✓</span>
-                  <span>正式リリース後も優遇価格でご提供</span>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 mt-1">•</span>
+                  <span>在庫管理・入出庫管理</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-red-600 font-bold text-xl">✓</span>
-                  <span>機能のカスタマイズ相談優先対応</span>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 mt-1">•</span>
+                  <span>製番管理・工程管理</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 mt-1">•</span>
+                  <span>BOM（部品表）管理</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 mt-1">•</span>
+                  <span>ユーザー数無制限</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 mt-1">•</span>
+                  <span>カスタマイズ対応可能</span>
                 </li>
               </ul>
             </div>
 
             <div className="text-center">
-              <button 
+              <button
                 onClick={() => scrollToSection('contact')}
-                className="bg-red-600 hover:bg-red-700 px-12 py-4 rounded-lg font-semibold text-lg text-white transition shadow-lg inline-block"
+                className="bg-red-600 hover:bg-red-700 text-white px-10 py-4 rounded-lg text-lg font-semibold transition-all transform hover:scale-105 inline-block"
               >
-                βテスターに応募する
+                お問い合わせ
               </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Contactセクション */}
-      <section id="contact" className="py-20 px-4 bg-gray-900 text-white">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-center">お問い合わせ</h2>
-          <p className="text-gray-300 text-center mb-8">
-            製品購入・カスタマイズ見積もり・βテスター応募などお気軽にお問い合わせください
-          </p>
-          
-          <form onSubmit={handleSubmit} className="bg-gray-800 p-8 rounded-lg space-y-6">
-            <div>
-              <label className="block text-gray-300 mb-2">お名前 *</label>
-              <input 
-                type="text" 
-                name="name"
-                required
-                className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white focus:border-red-500 focus:outline-none"
-                placeholder="山田 太郎"
-              />
-            </div>
+      {/* 製品一覧セクション */}
+      <section id="products" className="py-24 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">製品一覧</h2>
+            <p className="text-xl text-gray-600">現場で使える実践的なツール</p>
+          </div>
 
-            <div>
-              <label className="block text-gray-300 mb-2">メールアドレス *</label>
-              <input 
-                type="email" 
-                name="email"
-                required
-                className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white focus:border-red-500 focus:outline-none"
-                placeholder="example@company.com"
-              />
-            </div>
-
-            <div>
-              <label className="block text-gray-300 mb-2">お問い合わせ種類 *</label>
-              <select 
-                name="type"
-                required
-                className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white focus:border-red-500 focus:outline-none"
+          <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+            {/* Manufacturing DX Lab */}
+            <div className="bg-gray-50 rounded-2xl p-8 hover:shadow-xl transition-shadow">
+              <div className="bg-red-600 text-white w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">Manufacturing DX Lab</h3>
+              <p className="text-gray-600 mb-6">
+                小規模製造業のための統合管理システム。生産計画、在庫管理、製番管理を一元化。
+              </p>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center gap-2 text-gray-700">
+                  <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>MRP対応</span>
+                </div>
+                <div className="flex items-center gap-2 text-gray-700">
+                  <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>クラウド対応</span>
+                </div>
+                <div className="flex items-center gap-2 text-gray-700">
+                  <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>カスタマイズ可能</span>
+                </div>
+              </div>
+              <div className="text-2xl font-bold text-gray-800 mb-6">
+                月額 30,000円
+              </div>
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-semibold transition-colors"
               >
-                <option value="">選択してください</option>
-                <option value="βテスター応募">βテスター応募</option>
-                <option value="製品購入について">製品購入について</option>
-                <option value="カスタマイズ・オーダーメイド見積もり">カスタマイズ・オーダーメイド見積もり</option>
-                <option value="技術相談">技術相談</option>
-                <option value="その他">その他</option>
-              </select>
+                詳しく見る
+              </button>
             </div>
 
-            <div>
-              <label className="block text-gray-300 mb-2">メッセージ *</label>
-              <textarea 
-                name="message"
-                required
-                rows="6"
-                className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white focus:border-red-500 focus:outline-none resize-none"
-                placeholder="お問い合わせ内容をご記入ください"
-              ></textarea>
+            {/* バーコード在庫管理 */}
+            <div className="bg-gray-50 rounded-2xl p-8 hover:shadow-xl transition-shadow">
+              <div className="bg-blue-600 text-white w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">バーコード在庫管理</h3>
+              <p className="text-gray-600 mb-6">
+                スマホでバーコードを読み取るだけの簡単在庫管理。Googleスプレッドシートベース。
+              </p>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center gap-2 text-gray-700">
+                  <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>スマホで即導入</span>
+                </div>
+                <div className="flex items-center gap-2 text-gray-700">
+                  <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>無料で利用可能</span>
+                </div>
+                <div className="flex items-center gap-2 text-gray-700">
+                  <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>サポート有料対応</span>
+                </div>
+              </div>
+              <div className="text-2xl font-bold text-gray-800 mb-6">
+                基本無料
+              </div>
+              <div className="flex gap-3">
+                <a
+                  href="https://docs.google.com/spreadsheets/d/1V8bfKntopn85tRWzL0hZpVd-jDZ6tCPPF3TzcMBUVi0/copy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition-colors text-center"
+                >
+                  使い方を見る
+                </a>
+                <a
+                  href="https://docs.google.com/document/d/1hVaVduehDS-tS2zf-ilVf3N-ONcb1TQ7W0SAHFUpWIE/edit?tab=t.0#heading=h.9mwcc7vlw3at"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold transition-colors text-center"
+                >
+                  マニュアル
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 機能セクション */}
+      <section id="features" className="py-24 bg-gray-50">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">主な機能</h2>
+            <p className="text-xl text-gray-600">製造現場で本当に必要な機能を厳選</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+            {/* 生産計画 */}
+            <div className="text-center">
+              <div className="mb-6 rounded-2xl overflow-hidden shadow-lg">
+                <img src={planningImg} alt="生産計画" className="w-full h-64 object-cover" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">生産計画・MRP</h3>
+              <p className="text-gray-600">
+                需要予測から資材所要量を自動計算。必要な部材を必要なタイミングで発注。
+              </p>
             </div>
 
-            <button 
-              type="submit"
-              className="w-full bg-red-600 hover:bg-red-700 py-3 rounded-lg font-semibold transition"
-            >
-              送信する
-            </button>
-          </form>
-          
-          {showSuccessMessage && (
-            <div className="bg-green-600 text-white p-4 rounded-lg text-center mt-4">
-              <p className="font-semibold">✓ お問い合わせありがとうございます！</p>
-              <p className="text-sm mt-1">メーラーが起動します。送信を完了してください。</p>
+            {/* 在庫管理 */}
+            <div className="text-center">
+              <div className="mb-6 rounded-2xl overflow-hidden shadow-lg">
+                <img src={warehouseImg} alt="在庫管理" className="w-full h-64 object-cover" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">在庫管理</h3>
+              <p className="text-gray-600">
+                リアルタイムな在庫状況の把握。入出庫履歴の完全追跡で棚卸も効率化。
+              </p>
             </div>
-          )}
-          
-          <div className="mt-8 text-center">
-            <p className="text-gray-400 text-sm mb-2">または直接メールでのお問い合わせも可能です</p>
-            <a 
-              href="mailto:magika9644@yahoo.ne.jp"
-              className="text-red-400 hover:text-red-300 text-lg font-semibold transition"
-            >
-              magika9644@yahoo.ne.jp
-            </a>
+
+            {/* 製番管理 */}
+            <div className="text-center">
+              <div className="mb-6 rounded-2xl overflow-hidden shadow-lg">
+                <img src={generationImg} alt="製番管理" className="w-full h-64 object-cover" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">製番管理</h3>
+              <p className="text-gray-600">
+                製造指示から完成まで一元管理。工程の進捗状況をリアルタイムで可視化。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* βテスター募集セクション */}
+      <section id="beta" className="py-24 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <div className="inline-block bg-red-600 text-white px-6 py-2 rounded-full text-sm font-bold mb-4">
+                限定3社募集
+              </div>
+              <h2 className="text-4xl font-bold text-gray-800 mb-4">βテスター募集</h2>
+              <p className="text-xl text-gray-600">
+                製品開発にご協力いただける企業様を募集しています
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl p-10 mb-12">
+              <div className="grid md:grid-cols-2 gap-8 mb-10">
+                <div>
+                  <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    募集要項
+                  </h3>
+                  <ul className="space-y-3 text-gray-700">
+                    <li className="flex items-start gap-2">
+                      <span className="text-red-600 font-bold mt-1">•</span>
+                      <div>
+                        <div className="font-semibold">募集社数</div>
+                        <div>3社限定</div>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-red-600 font-bold mt-1">•</span>
+                      <div>
+                        <div className="font-semibold">期間</div>
+                        <div>2026年4月～6月（3ヶ月間）</div>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-red-600 font-bold mt-1">•</span>
+                      <div>
+                        <div className="font-semibold">対象</div>
+                        <div>製造業であればOK</div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    特典
+                  </h3>
+                  <ul className="space-y-3 text-gray-700">
+                    <li className="flex items-start gap-2">
+                      <svg className="w-5 h-5 text-green-600 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      <div>
+                        <div className="font-semibold">初期費用無料</div>
+                        <div className="text-sm text-gray-600">（通常150,000円）</div>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <svg className="w-5 h-5 text-green-600 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      <div>
+                        <div className="font-semibold">期間中の月額無料</div>
+                        <div className="text-sm text-gray-600">（通常30,000円/月）</div>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <svg className="w-5 h-5 text-green-600 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      <div>
+                        <div className="font-semibold">製品版移行時に料金優遇</div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-xl p-6">
+                <h3 className="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
+                  <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  お願いしたいこと
+                </h3>
+                <ul className="space-y-2 text-gray-700">
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-600 mt-1">•</span>
+                    <span>実際の業務でシステムをご利用いただき、使い勝手や機能についてのフィードバックをお願いします</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-600 mt-1">•</span>
+                    <span>月1回程度の簡単なヒアリングにご協力ください</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-600 mt-1">•</span>
+                    <span>気づいた点や改善要望があれば、随時お気軽にお知らせください</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="bg-red-600 hover:bg-red-700 text-white px-12 py-4 rounded-lg text-lg font-bold transition-all transform hover:scale-105 inline-flex items-center gap-2"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                βテスターに応募する
+              </button>
+              <p className="text-sm text-gray-600 mt-4">
+                お問い合わせフォームから「βテスター希望」とお伝えください
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* お問い合わせセクション */}
+      <section id="contact" className="py-24 bg-gray-50">
+        <div className="container mx-auto px-6">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">お問い合わせ</h2>
+            <p className="text-xl text-gray-600 mb-12">
+              ご質問・ご相談はお気軽にどうぞ
+            </p>
+
+            <div className="bg-white rounded-2xl shadow-lg p-10">
+              <div className="space-y-6">
+                <div className="flex items-center justify-center gap-4 p-6 bg-blue-50 rounded-xl hover:bg-blue-100 transition-colors">
+                  <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  <div className="text-left">
+                    <div className="text-sm text-gray-600 mb-1">お電話でのお問い合わせ</div>
+                    <a href="tel:09040708622" className="text-2xl font-bold text-gray-800 hover:text-blue-600 transition-colors">
+                      090-4070-8622
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center gap-4 p-6 bg-green-50 rounded-xl hover:bg-green-100 transition-colors">
+                  <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  <div className="text-left">
+                    <div className="text-sm text-gray-600 mb-1">メールでのお問い合わせ</div>
+                    <a href="mailto:nagase.hiroki@gmail.com" className="text-xl font-bold text-gray-800 hover:text-green-600 transition-colors break-all">
+                      nagase.hiroki@gmail.com
+                    </a>
+                  </div>
+                </div>
+
+                <div className="pt-6 border-t border-gray-200">
+                  <p className="text-gray-600 text-sm">
+                    平日 9:00〜18:00（土日祝日を除く）<br />
+                    お気軽にお問い合わせください
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* フッター */}
-      <footer className="bg-gray-950 text-gray-400 py-8 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <p className="text-sm">© 2025 Manufacturing DX Lab. All rights reserved.</p>
+      <footer className="bg-gray-900 text-white py-12">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="flex items-center gap-3 mb-6 md:mb-0">
+              <img src={logo} alt="MDL Logo" className="h-10" />
+              <span className="text-lg font-bold">Manufacturing DX Lab</span>
+            </div>
+            <div className="text-gray-400 text-sm">
+              © 2026 Manufacturing DX Lab. All rights reserved.
+            </div>
+          </div>
         </div>
       </footer>
+
+      {/* トップへ戻るボタン */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 bg-red-600 hover:bg-red-700 text-white p-4 rounded-full shadow-lg transition-all transform hover:scale-110 z-40"
+          aria-label="トップへ戻る"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+          </svg>
+        </button>
+      )}
     </div>
   )
 }
