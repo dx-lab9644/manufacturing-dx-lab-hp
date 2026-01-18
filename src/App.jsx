@@ -48,15 +48,6 @@ function App() {
               <button onClick={() => scrollToSection('beta')} className="text-gray-700 hover:text-red-600 transition-colors">βテスター</button>
               <button onClick={() => scrollToSection('contact')} className="text-gray-700 hover:text-red-600 transition-colors">お問い合わせ</button>
             </div>
-            <a
-              href="tel:09040708622"
-              className="hidden md:flex items-center gap-2 bg-blue-600 text-white px-6 py-2.5 rounded-full hover:bg-blue-700 transition-colors"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-              090-4070-8622
-            </a>
           </div>
         </nav>
       </header>
@@ -72,18 +63,24 @@ function App() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50" />
         </div>
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+          <div className="inline-block bg-red-600 text-white px-6 py-3 rounded-full text-lg font-bold mb-6">
+            βテスター募集中（3社限定）
+          </div>
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
             製造業の管理を<br />シンプルに。
           </h1>
-          <p className="text-xl md:text-2xl mb-12 text-gray-200">
+          <p className="text-xl md:text-2xl mb-4 text-gray-200">
             小規模製造業のための統合管理システム
+          </p>
+          <p className="text-lg md:text-xl mb-12 text-gray-300">
+            2026年7月 製品版リリース予定
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
-              onClick={() => scrollToSection('contact')}
+              onClick={() => scrollToSection('beta')}
               className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all transform hover:scale-105"
             >
-              無料相談を申し込む
+              βテスターに応募
             </button>
             <button
               onClick={() => scrollToSection('features')}
@@ -262,7 +259,7 @@ function App() {
               </div>
               <div className="flex gap-3">
                 <a
-                  href="https://docs.google.com/spreadsheets/d/1V8bfKntopn85tRWzL0hZpVd-jDZ6tCPPF3TzcMBUVi0/copy"
+                  href="https://note.com/nagase_hiroki/n/n7e3c1e71ded2"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition-colors text-center"
@@ -270,7 +267,7 @@ function App() {
                   使い方を見る
                 </a>
                 <a
-                  href="https://docs.google.com/document/d/1hVaVduehDS-tS2zf-ilVf3N-ONcb1TQ7W0SAHFUpWIE/edit?tab=t.0#heading=h.9mwcc7vlw3at"
+                  href="https://docs.google.com/spreadsheets/d/1WV38QzKmLxDBN7MFN6L1bX1fLZvuZm_rZlPkiZ9Wg8Y/edit?gid=0#gid=0"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold transition-colors text-center"
@@ -467,18 +464,6 @@ function App() {
 
             <div className="bg-white rounded-2xl shadow-lg p-10">
               <div className="space-y-6">
-                <div className="flex items-center justify-center gap-4 p-6 bg-blue-50 rounded-xl hover:bg-blue-100 transition-colors">
-                  <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                  <div className="text-left">
-                    <div className="text-sm text-gray-600 mb-1">お電話でのお問い合わせ</div>
-                    <a href="tel:09040708622" className="text-2xl font-bold text-gray-800 hover:text-blue-600 transition-colors">
-                      090-4070-8622
-                    </a>
-                  </div>
-                </div>
-
                 <div className="flex items-center justify-center gap-4 p-6 bg-green-50 rounded-xl hover:bg-green-100 transition-colors">
                   <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -493,8 +478,8 @@ function App() {
 
                 <div className="pt-6 border-t border-gray-200">
                   <p className="text-gray-600 text-sm">
-                    平日 9:00〜18:00（土日祝日を除く）<br />
-                    お気軽にお問い合わせください
+                    βテスター募集や製品に関するお問い合わせは<br />
+                    メールにてお気軽にご連絡ください
                   </p>
                 </div>
               </div>
