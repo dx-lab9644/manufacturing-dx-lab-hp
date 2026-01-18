@@ -179,7 +179,7 @@ function App() {
                 <div className="bg-white rounded-xl p-6">
                   <div className="text-green-600 font-bold mb-2">すべてを一元管理</div>
                   <div className="text-sm text-gray-600">
-                    生産計画・在庫・製番を統合管理。情報の分散を防ぎ、リアルタイムな状況把握を実現
+                    生産計画・在庫・製造を統合管理。情報の分散を防ぎ、リアルタイムな状況把握を実現
                   </div>
                 </div>
               </div>
@@ -264,7 +264,7 @@ function App() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-blue-600 mt-1">•</span>
-                  <span>カスタマイズ対応可能</span>
+                  <span>カスタマイズ対応は別途お見積り</span>
                 </li>
               </ul>
             </div>
