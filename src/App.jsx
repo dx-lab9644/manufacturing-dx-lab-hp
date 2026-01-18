@@ -2,6 +2,9 @@ import logo from './assets/logo.png'
 import planningImg from './assets/planning.png'
 import warehouseImg from './assets/warehouse.png'
 import generationImg from './assets/generation.png'
+import orderImg from './assets/order.png'
+import purchaseImg from './assets/purchase.png'
+import shippingImg from './assets/shipping.png'
 import { useState, useEffect } from 'react'
 import ReactGA from 'react-ga4'
 
@@ -237,7 +240,19 @@ function App() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-blue-600 mt-1">•</span>
-                  <span>製番管理・工程管理</span>
+                  <span>製造管理・工程管理</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 mt-1">•</span>
+                  <span>受注管理</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 mt-1">•</span>
+                  <span>購買管理</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 mt-1">•</span>
+                  <span>出荷管理</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-blue-600 mt-1">•</span>
@@ -274,7 +289,7 @@ function App() {
             <p className="text-xl text-gray-600">現場で使える実践的なツール</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {/* ALISA */}
             <div className="bg-gray-50 rounded-2xl p-8 hover:shadow-xl transition-shadow">
               <div className="bg-red-600 text-white w-16 h-16 rounded-xl flex items-center justify-center mb-6">
@@ -289,7 +304,7 @@ function App() {
                 </div>
               </div>
               <p className="text-gray-600 mb-6">
-                小規模製造業のための統合管理システム。生産計画、在庫管理、製番管理を一元化。
+                小規模製造業のための統合管理システム。生産計画、在庫管理、製造管理を一元化。
               </p>
               <div className="space-y-3 mb-6">
                 <div className="flex items-center gap-2 text-gray-700">
@@ -359,15 +374,15 @@ function App() {
               </div>
               <div className="flex gap-3">
                 <a
-                  href="https://note.com/nagase_hiroki/n/n7e3c1e71ded2"
+                  href="https://docs.google.com/spreadsheets/d/1byEEp_XJowWFAdgl3K0itgqxydSkSf-nGI6WVPZhDzQ/copy"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition-colors text-center"
                 >
-                  使い方を見る
+                  ダウンロードはこちら
                 </a>
                 <a
-                  href="https://docs.google.com/spreadsheets/d/1WV38QzKmLxDBN7MFN6L1bX1fLZvuZm_rZlPkiZ9Wg8Y/edit?gid=0#gid=0"
+                  href="https://docs.google.com/document/d/1hVaVduehDS-tS2zf-ilVf3N-ONcb1TQ7W0SAHFUpWIE/edit?tab=t.0#heading=h.9mwcc7vlw3at"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold transition-colors text-center"
@@ -375,6 +390,95 @@ function App() {
                   マニュアル
                 </a>
               </div>
+            </div>
+
+            {/* 基準在庫算出 */}
+            <div className="bg-gray-50 rounded-2xl p-8 hover:shadow-xl transition-shadow">
+              <div className="bg-purple-600 text-white w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">基準在庫算出</h3>
+              <p className="text-gray-600 mb-6">
+                直近3ヶ月の出荷実績からばらつきを分析し、リードタイムに合わせた基準在庫を自動生成。
+              </p>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center gap-2 text-gray-700">
+                  <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>Excelで動作</span>
+                </div>
+                <div className="flex items-center gap-2 text-gray-700">
+                  <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>統計的な分析</span>
+                </div>
+                <div className="flex items-center gap-2 text-gray-700">
+                  <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>買い切り型</span>
+                </div>
+              </div>
+              <div className="text-2xl font-bold text-gray-800 mb-6">
+                6,980円（買い切り）
+              </div>
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-semibold transition-colors"
+              >
+                お問い合わせ
+              </button>
+            </div>
+
+            {/* 生産計画自動化 */}
+            <div className="bg-gray-50 rounded-2xl p-8 hover:shadow-xl transition-shadow">
+              <div className="bg-orange-600 text-white w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <div className="mb-4">
+                <h3 className="text-2xl font-bold text-gray-800 mb-2">生産計画自動化</h3>
+                <div className="inline-block bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-xs font-bold">
+                  基準在庫算出含む
+                </div>
+              </div>
+              <p className="text-gray-600 mb-6">
+                工数、リードタイム、現状在庫の基準比をもとに生産計画を自動生成。基準在庫算出の拡張機能。
+              </p>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center gap-2 text-gray-700">
+                  <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>計画を自動生成</span>
+                </div>
+                <div className="flex items-center gap-2 text-gray-700">
+                  <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>Excelで動作</span>
+                </div>
+                <div className="flex items-center gap-2 text-gray-700">
+                  <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>買い切り型</span>
+                </div>
+              </div>
+              <div className="text-2xl font-bold text-gray-800 mb-6">
+                19,800円（買い切り）
+              </div>
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="w-full bg-orange-600 hover:bg-orange-700 text-white py-3 rounded-lg font-semibold transition-colors"
+              >
+                お問い合わせ
+              </button>
             </div>
           </div>
         </div>
@@ -411,14 +515,47 @@ function App() {
               </p>
             </div>
 
-            {/* 製番管理 */}
+            {/* 製造管理 */}
             <div className="text-center">
               <div className="mb-6 rounded-2xl overflow-hidden shadow-lg">
-                <img src={generationImg} alt="製番管理" className="w-full h-64 object-cover" />
+                <img src={generationImg} alt="製造管理" className="w-full h-64 object-cover" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">製番管理</h3>
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">製造管理</h3>
               <p className="text-gray-600">
                 製造指示から完成まで一元管理。工程の進捗状況をリアルタイムで可視化。
+              </p>
+            </div>
+
+            {/* 受注管理 */}
+            <div className="text-center">
+              <div className="mb-6 rounded-2xl overflow-hidden shadow-lg">
+                <img src={orderImg} alt="受注管理" className="w-full h-64 object-cover" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">受注管理</h3>
+              <p className="text-gray-600">
+                顧客からの注文を一元管理。納期管理から売上分析まで対応。
+              </p>
+            </div>
+
+            {/* 購買管理 */}
+            <div className="text-center">
+              <div className="mb-6 rounded-2xl overflow-hidden shadow-lg">
+                <img src={purchaseImg} alt="購買管理" className="w-full h-64 object-cover" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">購買管理</h3>
+              <p className="text-gray-600">
+                発注から入庫までを管理。サプライヤー情報の一元化で調達業務を効率化。
+              </p>
+            </div>
+
+            {/* 出荷管理 */}
+            <div className="text-center">
+              <div className="mb-6 rounded-2xl overflow-hidden shadow-lg">
+                <img src={shippingImg} alt="出荷管理" className="w-full h-64 object-cover" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">出荷管理</h3>
+              <p className="text-gray-600">
+                出荷指示から配送完了まで追跡。配送状況の可視化で顧客対応も迅速に。
               </p>
             </div>
           </div>
@@ -570,8 +707,8 @@ function App() {
                   </svg>
                   <div className="text-left">
                     <div className="text-sm text-gray-600 mb-1">メールでのお問い合わせ</div>
-                    <a href="mailto:nagase.hiroki@gmail.com" className="text-xl font-bold text-gray-800 hover:text-green-600 transition-colors break-all">
-                      nagase.hiroki@gmail.com
+                    <a href="mailto:magika9644@yahoo.ne.jp" className="text-xl font-bold text-gray-800 hover:text-green-600 transition-colors">
+                      コチラ
                     </a>
                   </div>
                 </div>
