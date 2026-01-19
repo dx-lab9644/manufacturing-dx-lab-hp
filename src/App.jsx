@@ -374,7 +374,7 @@ function App() {
               </div>
               <div className="flex gap-3">
                 <a
-                  href="https://docs.google.com/spreadsheets/d/1byEEp_XJowWFAdgl3K0itgqxydSkSf-nGI6WVPZhDzQ/copy"
+                  href="https://docs.google.com/spreadsheets/d/1V8bfKntopn85tRWzL0hZpVd-jDZ6tCPPF3TzcMBUVi0/copy"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition-colors text-center"
