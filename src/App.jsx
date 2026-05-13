@@ -83,10 +83,10 @@ function App() {
           </p>
           <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 mb-8 inline-block">
             <p className="text-white text-lg mb-2">
-              <span className="font-bold text-yellow-400">βテスト期間：</span>2026年7月～9月
+              <span className="font-bold text-yellow-400">βテスト期間：</span>2026年10月～12月
             </p>
             <p className="text-white text-lg">
-              <span className="font-bold text-yellow-400">製品版リリース：</span>2026年10月予定
+              <span className="font-bold text-yellow-400">製品版リリース：</span>2027年1月予定
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -300,7 +300,7 @@ function App() {
               <div className="mb-4">
                 <h3 className="text-2xl font-bold text-gray-800 mb-2">ALISA（スマートERP）</h3>
                 <div className="inline-block bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-bold">
-                  開発中・2026年10月リリース予定
+                  開発中・2027年1月リリース予定
                 </div>
               </div>
               <p className="text-gray-600 mb-6">
@@ -597,7 +597,7 @@ function App() {
                       <span className="text-red-600 font-bold mt-1">•</span>
                       <div>
                         <div className="font-semibold">期間</div>
-                        <div>2026年7月～9月（3ヶ月間）</div>
+                        <div>2026年10月～12月（3ヶ月間）</div>
                       </div>
                     </li>
                     <li className="flex items-start gap-2">
